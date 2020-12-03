@@ -1,0 +1,90 @@
+.login {
+  padding: 200px 0 100px 0;
+  max-width: 500px;
+  margin: 0 auto;
+  &__wrapper {
+    box-shadow: 1px 1px 6px black;
+    border-radius: 5px;
+    padding: 50px;
+    background-color: #fafafa;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    & h2 {
+      font-weight: 700;
+      font-size: 33px;
+      text-align: center;
+      flex: 1;
+      margin: 0px 15px;
+    }
+    & span {
+      background-color: black;
+      height: 2px;
+      flex: 1;
+      display: block;
+    }
+  }
+
+  &__subtitle {
+    color: #808080;
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    & input {
+      padding: 7px 15px 7px 7px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 20px;
+      min-width: 0;
+      transition: 0.2s;
+      margin-bottom: 15px;
+      flex: 1;
+      &::placeholder {
+        font-size: 16px;
+      }
+      &:focus::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  &__submit {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid black;
+    transition: 0.2s;
+    color: #fff;
+    background-color: black;
+    font-weight: 700;
+
+    &:hover {
+      color: black;
+      background-color: #f3f3f3;
+    }
+  }
+
+  &__register {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    & a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      color: black;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
