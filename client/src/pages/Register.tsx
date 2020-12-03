@@ -1,7 +1,16 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
 import "../styles/components/Register.scss";
+import { registerSchema } from "../utils/validation/register";
+
+interface RegisterValuesType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const Register: React.FC = () => {
   return (
@@ -22,23 +31,49 @@ const Register: React.FC = () => {
               password: "",
               confirmPassword: "",
             }}
-            onSubmit={(values, { resetForm }) => {
+            validationSchema={registerSchema}
+            onSubmit={(values: RegisterValuesType, { resetForm }) => {
               console.log(values);
               resetForm();
             }}
           >
             <Form className="register__form">
               <div className="register__name-section">
-                <Field type="text" placeholder="First name" name="firstName" />
-                <Field type="text" placeholder="Last name" name="lastName" />
+                <div className="register__field-section">
+                  <Field type="text" placeholder="First name" name="firstName" />
+                  <span>
+                    <ErrorMessage name="firstName" />
+                  </span>
+                </div>
+                <div className="register__field-section">
+                  <Field type="text" placeholder="Last name" name="lastName" />
+                  <span>
+                    <ErrorMessage name="lastName" />
+                  </span>
+                </div>
               </div>
-              <Field type="email" placeholder="Email" name="email" />
-              <Field type="password" placeholder="Password" name="password" />
-              <Field
-                type="password"
-                placeholder="Confirm password"
-                name="confirmPassword"
-              />
+              <div className="register__field-section">
+                <Field type="email" placeholder="Email" name="email" />
+                <span>
+                  <ErrorMessage name="email" />
+                </span>
+              </div>
+              <div className="register__field-section">
+                <Field type="password" placeholder="Password" name="password" />
+                <span>
+                  <ErrorMessage name="password" />
+                </span>
+              </div>
+              <div className="register__field-section">
+                <Field
+                  type="password"
+                  placeholder="Confirm password"
+                  name="confirmPassword"
+                />
+                <span>
+                  <ErrorMessage name="confirmPassword" />
+                </span>
+              </div>
               <button className="register__submit" type="submit">
                 Register now
               </button>
