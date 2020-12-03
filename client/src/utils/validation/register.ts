@@ -22,5 +22,4 @@ export const registerSchema = yup.object({
     .min(8, "Too short, minimum is 8 symbols")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("Field is required"),
-  test: yup.string(),
 });

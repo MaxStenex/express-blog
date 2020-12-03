@@ -46,14 +46,26 @@
       font-size: 20px;
       min-width: 0;
       transition: 0.2s;
-      margin-bottom: 15px;
-      flex: 1;
+      width: 100%;
       &::placeholder {
         font-size: 16px;
       }
       &:focus::placeholder {
         color: transparent;
       }
+    }
+  }
+
+  &__field-section {
+    flex: 1;
+    margin-bottom: 15px;
+    & span {
+      font-size: 14px;
+      margin-top: 5px;
+      display: block;
+      margin-left: 3px;
+      color: #b83a3a;
+      font-weight: 700;
     }
   }
 

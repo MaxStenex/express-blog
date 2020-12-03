@@ -1,7 +1,8 @@
-import { Formik, Field, Form } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/components/Login.scss";
+import { loginSchema } from "../utils/validation/login";
 
 const Login: React.FC = () => {
   return (
@@ -19,14 +20,25 @@ const Login: React.FC = () => {
               email: "",
               password: "",
             }}
+            validationSchema={loginSchema}
             onSubmit={(values, { resetForm }) => {
               console.log(values);
               resetForm();
             }}
           >
             <Form className="login__form">
-              <Field type="email" placeholder="Email" name="email" />
-              <Field type="password" placeholder="Password" name="password" />
+              <div className="login__field-section">
+                <Field type="email" placeholder="Email" name="email" />
+                <span>
+                  <ErrorMessage name="email" />
+                </span>
+              </div>
+              <div className="login__field-section">
+                <Field type="password" placeholder="Password" name="password" />
+                <span>
+                  <ErrorMessage name="password" />
+                </span>
+              </div>
               <button className="login__submit" type="submit">
                 Login
               </button>
