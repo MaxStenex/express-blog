@@ -1,6 +1,15 @@
 import React from "react";
-import "./styles/App.scss";
+import { Route, Switch } from "react-router-dom";
+import { Register } from "./pages";
+import "./styles/components/App.scss";
+import "./styles/normalize.scss";
 
-export const App: React.FC = () => {
-  return <h1>Hello world!</h1>;
+const App: React.FC = () => {
+  return (
+    <Switch>
+      <Route path="/" component={Register} />
+    </Switch>
+  );
 };
+
+export default App;
