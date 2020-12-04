@@ -1,5 +1,5 @@
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const verifyUser = (req: Request, res: Response, next: NextFunction) => {
