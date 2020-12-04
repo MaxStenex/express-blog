@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import "../styles/components/Login.scss";
 import { loginSchema } from "../utils/validation/login";
 
+interface LoginValuesType {
+  email: string;
+  password: string;
+}
+
 const Login: React.FC = () => {
   return (
     <section className="login">
@@ -21,7 +26,7 @@ const Login: React.FC = () => {
               password: "",
             }}
             validationSchema={loginSchema}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(values: LoginValuesType, { resetForm }) => {
               console.log(values);
               resetForm();
             }}

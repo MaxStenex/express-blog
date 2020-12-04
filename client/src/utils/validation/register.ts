@@ -15,6 +15,7 @@ export const registerSchema = yup.object({
   password: yup
     .string()
     .min(8, "Too short, minimum is 8 symbols")
+    .max(255, "Maximum length is 255")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("Field is required"),
   confirmPassword: yup
