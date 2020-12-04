@@ -30,6 +30,6 @@ export default class RegisterController {
       console.log(error);
     }
 
-    res.status(200).end("Register succesfull");
+    res.status(200).json({ message: "Register succesfull" });
   };
 }

@@ -21,7 +21,8 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/api/auth/register", registerRouter);
-app.use("/api/auth/login", loginRouter);
+app.use("/auth/register", registerRouter);
+
+app.use("/auth/login", loginRouter);
 
 app.listen(4000, () => console.log("Server running on port: 4000"));
