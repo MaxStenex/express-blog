@@ -1,0 +1,33 @@
+import { Request, Response, Router } from "express";
+import User from "../../models/User";
+import bcrypt from "bcryptjs";
+import { loginValidator } from "../../utils/validators/authValidation";
+import { validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+
+const router = Router();
+
+router.post("/", loginValidator, async (req: Request, res: Response) => {
+  const responseWithError = () =>
+    res.status(400).json({ error: "Email or password incorrect" });
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return responseWithError();
+  }
+
+  const registeredUser = await User.findOne({ email: req.body.email });
+  if (!registeredUser) {
+    return responseWithError();
+  }
+
+  const passIsValid = await bcrypt.compare(req.body.password, registeredUser.password);
+  if (!passIsValid) {
+    return responseWithError();
+  }
+
+  const token = jwt.sign({ _id: registeredUser._id }, `${process.env.TOKEN_SECRET}`);
+  res.status(200).header("auth-token", token).send(token);
+});
+
+export { router as loginRouter };

@@ -1,4 +1,11 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+
+export interface UserType extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
 
 const userSchema: Schema = new Schema({
   firstName: { type: String, required: true },
@@ -7,4 +14,4 @@ const userSchema: Schema = new Schema({
   password: { type: String, required: true },
 });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model<UserType>("User", userSchema);

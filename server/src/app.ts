@@ -4,7 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
-import { registerRouter } from "./routes/auth/register";
+import { registerRouter, loginRouter } from "./routes/auth/";
 
 dotenv.config();
 
@@ -21,6 +21,7 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/api/auth", registerRouter);
+app.use("/api/auth/register", registerRouter);
+app.use("/api/auth/login", loginRouter);
 
 app.listen(4000, () => console.log("Server running on port: 4000"));
