@@ -1,10 +1,13 @@
 import React from "react";
-import { PageTop } from "../components";
+import { About, Footer, LatestArticles, PageTop } from "../components";
 
 const Home: React.FC = () => {
   return (
     <>
       <PageTop />
+      <LatestArticles />
+      <About />
+      <Footer />
     </>
   );
 };

@@ -1,0 +1,32 @@
+.article-preview {
+  flex: 0 0 33%;
+  max-width: 300px;
+  background-color: #fff;
+  box-shadow: 1px 5px 12px black;
+  margin-right: 25px;
+  margin-bottom: 30px;
+  &:hover {
+    transition: 0.3s;
+    transform: scale(1.01);
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+
+  & a {
+    text-decoration: none;
+  }
+
+  &__image {
+    width: 100%;
+    height: 300px;
+  }
+
+  &__title {
+    padding: 50px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.3;
+    color: black;
+  }
+}

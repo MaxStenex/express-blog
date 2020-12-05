@@ -1,0 +1,31 @@
+.latest {
+  padding: 120px 0;
+  background-color: #e1e6e0;
+  &__title {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 45px;
+    text-transform: uppercase;
+    position: relative;
+    &::after {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      width: 5%;
+      content: "";
+      height: 5px;
+      background-color: black;
+      bottom: -30px;
+    }
+  }
+
+  &__articles {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__article {
+  }
+}

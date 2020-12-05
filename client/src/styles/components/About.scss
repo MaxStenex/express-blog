@@ -1,0 +1,42 @@
+.about {
+  &__wrapper {
+    display: flex;
+  }
+
+  &__image {
+    flex: 50%;
+    margin-right: 50px;
+  }
+
+  &__main {
+    flex: 50%;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 55px;
+    text-align: center;
+    margin-top: 100px;
+    position: relative;
+    text-transform: uppercase;
+    &::after {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      width: 5%;
+      content: "";
+      height: 5px;
+      background-color: black;
+      bottom: -30px;
+    }
+  }
+
+  &__text {
+    margin: 100px auto;
+    margin-bottom: 0;
+    font-size: 20px;
+    font-style: italic;
+    max-width: 700px;
+    line-height: 1.25;
+  }
+}
