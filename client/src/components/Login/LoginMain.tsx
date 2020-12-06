@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/components/LoginMain.scss";
-import { loginSchema } from "../utils/validation/login";
+import "../../styles/components/LoginMain.scss";
+import { loginSchema } from "../../utils/validation/login";
 
 interface LoginValuesType {
   email: string;

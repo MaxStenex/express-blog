@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/components/LatestArticles.scss";
+import "../../styles/components/LatestArticles.scss";
 import { ArticlePreview } from "./";
 
 const LatestArticles: React.FC = () => {

@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import { registerSchema } from "../utils/validation/register";
-import "../styles/components/RegisterMain.scss";
+import { registerSchema } from "../../utils/validation/register";
+import "../../styles/components/RegisterMain.scss";
 
 interface RegisterValuesType {
   firstName: string;

@@ -1,5 +1,6 @@
 import React from "react";
-import { About, Footer, LatestArticles, PageTop } from "../components";
+import { Footer, PageTop } from "../components";
+import { About, LatestArticles } from "../components/Home";
 
 const Home: React.FC = () => {
   return (

@@ -1,5 +1,6 @@
 import React from "react";
-import { Header, RegisterMain } from "../components";
+import { Header } from "../components";
+import { RegisterMain } from "../components/Register";
 
 const Register: React.FC = () => {
   return (

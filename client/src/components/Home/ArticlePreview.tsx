@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/components/ArticlePreview.scss";
+import "../../styles/components/ArticlePreview.scss";
 
 const ArticlePreview: React.FC = () => {
   return (
