@@ -22,5 +22,8 @@ export const registerSchema = yup.object({
     .max(255, "Maximum length is 255")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("Field is required"),
-  confirmPassword: yup.string().required("Field is required"),
+  confirmPassword: yup
+    .string()
+    .required("Field is required")
+    .oneOf([yup.ref("password")], "Passwords are not match"),
 });

@@ -11,7 +11,7 @@ export default class RegisterController {
     }
     const registeredUser = await User.findOne({ email: req.body.email });
     if (registeredUser) {
-      return res.status(400).json({ error: "Email already exists" });
+      return res.status(401).json({ error: "Email already exists" });
     }
 
     const salt = await bcrypt.genSalt(10);

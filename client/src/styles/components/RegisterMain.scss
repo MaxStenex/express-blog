@@ -104,7 +104,7 @@
     background-color: black;
     font-weight: 700;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: black;
       background-color: #f3f3f3;
     }
@@ -127,6 +127,16 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+
+  &__message {
+    color: red;
+    margin-top: 10px;
+    font-weight: 700;
+    word-break: break-all;
+    &--success {
+      color: green;
     }
   }
 }

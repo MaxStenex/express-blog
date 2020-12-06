@@ -1,8 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { registerSchema } from "../../utils/validation/register";
 import "../../styles/components/RegisterMain.scss";
+import api from "../../utils/api";
+import classnames from "classnames";
 
 type RegisterValuesType = {
   firstName: string;
@@ -13,6 +15,13 @@ type RegisterValuesType = {
 };
 
 const RegisterMain: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+
+  const [serverResponse, setServerResponse] = useState({
+    message: "",
+    success: true,
+  });
+
   return (
     <>
       <section className="register">
@@ -34,8 +43,24 @@ const RegisterMain: React.FC = () => {
                 confirmPassword: "",
               }}
               validationSchema={registerSchema}
-              onSubmit={(values: RegisterValuesType, { resetForm }) => {
-                console.log(values);
+              onSubmit={async (values: RegisterValuesType, { resetForm }) => {
+                setLoading(true);
+                const { firstName, lastName, email, password } = values;
+                try {
+                  const response = await api.post("auth/register", {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                  });
+                  setServerResponse({ message: response.data.message, success: true });
+                } catch (error) {
+                  setServerResponse({
+                    message: error.response.data.error,
+                    success: false,
+                  });
+                }
+                setLoading(false);
                 resetForm();
               }}
             >
@@ -76,9 +101,18 @@ const RegisterMain: React.FC = () => {
                     <ErrorMessage name="confirmPassword" />
                   </span>
                 </div>
-                <button className="register__submit" type="submit">
-                  Register now
+                <button className="register__submit" type="submit" disabled={loading}>
+                  {loading ? "Loading..." : "Register now"}
                 </button>
+                {serverResponse.message && (
+                  <span
+                    className={classnames("register__message", {
+                      "register__message--success": serverResponse.success,
+                    })}
+                  >
+                    {serverResponse.message}
+                  </span>
+                )}
               </Form>
             </Formik>
           </div>
