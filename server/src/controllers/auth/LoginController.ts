@@ -6,6 +6,25 @@ import User from "../../models/User";
 
 export default class LoginController {
   index = async (req: Request, res: Response): Promise<unknown> => {
+    //Auth with token
+    const authToken = req.header("Token");
+    if (authToken) {
+      console.log(1);
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const decodedToken: any = jwt.verify(authToken, `${process.env.TOKEN_SECRET}`);
+        const registeredUser = await User.findOne({ _id: decodedToken._id });
+        if (!registeredUser) {
+          return res.status(401).json({ error: "Not authorized" });
+        }
+
+        const { firstName, lastName, _id } = registeredUser;
+        return res.status(200).send({ firstName, lastName, _id });
+      } catch (err) {
+        return res.status(401).json({ error: "Not authorized" });
+      }
+    }
+
     const responseWithError = () =>
       res.status(400).json({ error: "Email or password incorrect" });
 
@@ -28,6 +47,8 @@ export default class LoginController {
       expiresIn: "1h",
     });
 
-    res.status(200).header("Token", token).send(token);
+    const { firstName, lastName, _id } = registeredUser;
+
+    res.status(200).header("Token", token).send({ firstName, lastName, _id });
   };
 }
