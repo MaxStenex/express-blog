@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import "../../styles/components/LoginMain.scss";
 import { loginSchema } from "../../utils/validation/login";
 
-interface LoginValuesType {
+type LoginValuesType = {
   email: string;
   password: string;
-}
+};
 
 const LoginMain: React.FC = () => {
   return (

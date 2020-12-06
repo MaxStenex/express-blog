@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { registerSchema } from "../../utils/validation/register";
 import "../../styles/components/RegisterMain.scss";
 
-interface RegisterValuesType {
+type RegisterValuesType = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
-}
+};
 
 const RegisterMain: React.FC = () => {
   return (
