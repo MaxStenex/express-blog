@@ -121,4 +121,14 @@
       }
     }
   }
+
+  &__message {
+    color: red;
+    margin-top: 10px;
+    font-weight: 700;
+    word-break: break-all;
+    &--success {
+      color: green;
+    }
+  }
 }

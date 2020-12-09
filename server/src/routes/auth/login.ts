@@ -6,6 +6,6 @@ const router = Router();
 const loginController = new LoginController();
 
 router.post("/", loginValidator, loginController.index);
-router.post("/withToken", loginValidator, loginController.withToken);
+router.get("/withToken", loginValidator, loginController.withToken);
 
 export { router as loginRouter };

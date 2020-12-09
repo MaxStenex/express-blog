@@ -18,8 +18,12 @@ mongoose.connect(
   () => console.log("Connected to DB")
 );
 
+const corsOptions = {
+  exposedHeaders: "Token",
+};
+
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/auth/register", registerRouter);
 app.use("/auth/login", loginRouter);
