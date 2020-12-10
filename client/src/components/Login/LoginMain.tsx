@@ -1,13 +1,13 @@
+import classnames from "classnames";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { setUser } from "../../redux/ducks/user/actions";
-import "../../styles/components/LoginMain.scss";
+import { RootStateType } from "../../redux/rootReducer";
+import "../../styles/components/Login/LoginMain.scss";
 import api from "../../utils/api";
 import { loginSchema } from "../../utils/validation/login";
-import classnames from "classnames";
-import { RootStateType } from "../../redux/rootReducer";
 
 type LoginValuesType = {
   email: string;

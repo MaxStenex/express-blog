@@ -2,17 +2,24 @@ import React from "react";
 import "../styles/components/PageTop.scss";
 import { Header } from "./";
 
-const PageTop: React.FC = () => {
+type PageTopProps = {
+  imageSrc: string;
+  title: string;
+};
+
+const PageTop: React.FC<PageTopProps> = ({ title, imageSrc }) => {
   return (
     <>
       <Header />
-      <section className="page-top">
+      <section
+        className="page-top"
+        style={{
+          background: `url(${imageSrc}) no-repeat center center/cover`,
+        }}
+      >
         <div className="page-top__shadow"></div>
         <div className="container">
-          <h2 className="page-top__title">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae labore sed sequi
-            laborum ipsa magnam.
-          </h2>
+          <h2 className="page-top__title">{title}</h2>
         </div>
       </section>
     </>

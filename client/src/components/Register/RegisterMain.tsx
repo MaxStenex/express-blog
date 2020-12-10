@@ -1,10 +1,10 @@
+import classnames from "classnames";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { registerSchema } from "../../utils/validation/register";
-import "../../styles/components/RegisterMain.scss";
+import "../../styles/components/Register/RegisterMain.scss";
 import api from "../../utils/api";
-import classnames from "classnames";
+import { registerSchema } from "../../utils/validation/register";
 
 type RegisterValuesType = {
   firstName: string;

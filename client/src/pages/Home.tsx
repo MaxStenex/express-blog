@@ -1,11 +1,15 @@
 import React from "react";
 import { Footer, PageTop } from "../components";
 import { About, LatestArticles } from "../components/Home";
+import HomeImage from "../assets/main_bg.jpg";
 
 const Home: React.FC = () => {
   return (
     <>
-      <PageTop />
+      <PageTop
+        imageSrc={HomeImage}
+        title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, perferendis."
+      />
       <LatestArticles />
       <About />
       <Footer />

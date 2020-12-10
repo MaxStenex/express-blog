@@ -1,16 +1,16 @@
-.login {
+.register {
   padding: 200px 0 100px 0;
   min-height: 100vh;
   margin: 0 auto;
-  background: url("../../assets/main_bg.jpg") no-repeat center center/cover;
+  background: url("../../../assets/main_bg.jpg") no-repeat center center/cover;
   position: relative;
   &__wrapper {
     box-shadow: 1px 1px 6px black;
     border-radius: 5px;
     padding: 50px;
     background-color: #fafafa;
-    max-width: 500px;
     margin: 0 auto;
+    max-width: 500px;
     z-index: 30;
     position: relative;
   }
@@ -22,7 +22,7 @@
     width: 100%;
     height: 100%;
     background-color: black;
-    z-index: 10;
+    z-index: 15;
     opacity: 0.5;
   }
 
@@ -63,6 +63,7 @@
       font-size: 20px;
       min-width: 0;
       transition: 0.2s;
+
       width: 100%;
       &::placeholder {
         font-size: 16px;
@@ -86,6 +87,13 @@
     }
   }
 
+  &__name-section {
+    display: flex;
+    & .register__field-section:first-child {
+      margin-right: 15px;
+    }
+  }
+
   &__submit {
     margin-top: 15px;
     padding: 10px;
@@ -96,13 +104,13 @@
     background-color: black;
     font-weight: 700;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: black;
       background-color: #f3f3f3;
     }
   }
 
-  &__register {
+  &__sign {
     margin-top: 20px;
     text-align: center;
     font-size: 16px;
@@ -110,12 +118,12 @@
     position: relative;
     color: #fff;
     & a {
+      z-index: 30;
+      position: relative;
       text-decoration: none;
       font-weight: 700;
       font-size: 18px;
       color: #fff;
-      position: relative;
-      z-index: 30;
       &:hover {
         text-decoration: underline;
       }

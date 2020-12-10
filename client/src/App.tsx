@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { Home, Login, Register } from "./pages";
+import { Article, Home, Login, Register } from "./pages";
 import { setUser } from "./redux/ducks/user/actions";
 import "./styles/components/App.scss";
 import "./styles/normalize.scss";
 import api from "./utils/api";
 
 const App: React.FC = () => {
+  //Auth when user join site, if he have token
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/articles/:articleId" component={Article} />
     </Switch>
   );
 };

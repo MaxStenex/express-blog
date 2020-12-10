@@ -1,0 +1,17 @@
+.article-main {
+  &__text {
+    font-size: 19px;
+    line-height: 1.2;
+    background-color: #fff;
+    // min-height: calc(+ 100px);
+    position: relative;
+    bottom: 100px;
+    padding: 50px;
+  }
+
+  &__first-symbol {
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
