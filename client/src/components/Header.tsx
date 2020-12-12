@@ -1,14 +1,16 @@
 import Logo from "../assets/logo.png";
-import React from "react";
+import React, { useState } from "react";
 import "../styles/components/Header.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStateType } from "../redux/rootReducer";
 import { logoutUser } from "../redux/ducks/user/actions";
+import classnames from "classnames";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootStateType) => state.user);
   const dispatch = useDispatch();
+  const [togglePopup, setTogglePopup] = useState(false);
 
   const onLogout = (evt: React.SyntheticEvent<HTMLButtonElement>) => {
     dispatch(logoutUser());
@@ -32,18 +34,27 @@ const Header: React.FC = () => {
               </li>
               <li className="main-nav__item">
                 {user._id ? (
-                  <span className="main-nav__hello">Hello, {user.firstName}</span>
+                  <div
+                    className={classnames("main-nav__popup", {
+                      "main-nav__popup--opened": togglePopup,
+                    })}
+                    onMouseEnter={() => setTogglePopup(!togglePopup)}
+                    onMouseLeave={() => setTogglePopup(!togglePopup)}
+                  >
+                    <span className="main-nav__hello">Hello, {user.firstName}</span>
+                    <div className="main-nav__popup-body">
+                      <button className="main-nav__logout-btn" onClick={onLogout}>
+                        Logout
+                      </button>
+                      <Link to="/home">New Article</Link>
+                    </div>
+                  </div>
                 ) : (
-                  <Link to="/login">Login</Link>
-                )}
-
-                <span>/</span>
-                {user._id ? (
-                  <button className="main-nav__logout-btn" onClick={onLogout}>
-                    Logout
-                  </button>
-                ) : (
-                  <Link to="/register">Register</Link>
+                  <>
+                    <Link to="/login">Login</Link>
+                    <span>/</span>
+                    <Link to="/register">Register</Link>
+                  </>
                 )}
               </li>
             </ul>
