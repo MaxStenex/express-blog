@@ -68,32 +68,30 @@ const LoginMain: React.FC = () => {
             }}
           >
             <Form className="login__form">
-              <>
-                <div className="login__field-section">
-                  <Field type="email" placeholder="Email" name="email" />
-                  <span>
-                    <ErrorMessage name="email" />
-                  </span>
-                </div>
-                <div className="login__field-section">
-                  <Field type="password" placeholder="Password" name="password" />
-                  <span>
-                    <ErrorMessage name="password" />
-                  </span>
-                </div>
-                <button className="login__submit" type="submit" disabled={loading}>
-                  {loading ? "Logining in..." : "Login"}
-                </button>
-                {serverResponse.message && (
-                  <span
-                    className={classnames("login__message", {
-                      "login__message--success": serverResponse.success,
-                    })}
-                  >
-                    {serverResponse.message}
-                  </span>
-                )}
-              </>
+              <div className="login__field-section">
+                <Field type="email" placeholder="Email" name="email" />
+                <span>
+                  <ErrorMessage name="email" />
+                </span>
+              </div>
+              <div className="login__field-section">
+                <Field type="password" placeholder="Password" name="password" />
+                <span>
+                  <ErrorMessage name="password" />
+                </span>
+              </div>
+              <button className="login__submit" type="submit" disabled={loading}>
+                {loading ? "Logining in..." : "Login"}
+              </button>
+              {serverResponse.message && (
+                <span
+                  className={classnames("login__message", {
+                    "login__message--success": serverResponse.success,
+                  })}
+                >
+                  {serverResponse.message}
+                </span>
+              )}
             </Form>
           </Formik>
         </div>

@@ -51,7 +51,6 @@
   &__title-section {
     display: flex;
     margin-bottom: 30px;
-    align-items: center;
   }
 
   &__input {
@@ -68,6 +67,7 @@
   }
 
   &__label {
+    margin-top: 7px;
   }
 
   &__textarea {
@@ -94,6 +94,16 @@
       background-color: #fff;
       color: black;
       transition: 0.2s ease-in;
+    }
+  }
+
+  &__field-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    & span {
+      color: red;
+      margin-top: 5px;
     }
   }
 }
