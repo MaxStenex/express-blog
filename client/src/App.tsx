@@ -6,6 +6,7 @@ import { setUser } from "./redux/ducks/user/actions";
 import "./styles/components/App.scss";
 import "./styles/normalize.scss";
 import api from "./utils/api";
+import PrivateRoute from "./utils/helpers/PrivateRoute";
 
 const App: React.FC = () => {
   //Auth when user join site, if he have token
@@ -32,7 +33,7 @@ const App: React.FC = () => {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/articles/:articleId" component={Article} />
-      <Route path="/create_article" component={CreateArticle} />
+      <PrivateRoute path="/create_article" component={CreateArticle} />
     </Switch>
   );
 };
