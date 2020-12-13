@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { Article, Home, Login, Register } from "./pages";
+import { Article, CreateArticle, Home, Login, Register } from "./pages";
 import { setUser } from "./redux/ducks/user/actions";
 import "./styles/components/App.scss";
 import "./styles/normalize.scss";
@@ -32,6 +32,7 @@ const App: React.FC = () => {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/articles/:articleId" component={Article} />
+      <Route path="/create_article" component={CreateArticle} />
     </Switch>
   );
 };

@@ -1,0 +1,99 @@
+.create-article {
+  padding-top: 110px;
+  min-height: 100vh;
+  background: url("../../assets/main_bg.jpg") center center/cover no-repeat;
+  position: relative;
+
+  &__shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 15;
+    opacity: 0.5;
+  }
+
+  &__title {
+    z-index: 30;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 50px;
+  }
+
+  &__form {
+    z-index: 30;
+    position: relative;
+    background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 50px 35px 25px 35px;
+    border-radius: 5px;
+    border: 3px solid black;
+  }
+
+  &__form {
+  }
+
+  &__label {
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+
+  &__title-section {
+    display: flex;
+    margin-bottom: 30px;
+    align-items: center;
+  }
+
+  &__input {
+    border: 2px solid black;
+    padding: 5px 15px 5px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    flex: 1;
+  }
+
+  &__text-section {
+    display: flex;
+    margin-bottom: 25px;
+  }
+
+  &__label {
+  }
+
+  &__textarea {
+    border: 2px solid black;
+    padding: 5px 15px 5px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    flex: 1;
+    min-height: 40px;
+    max-height: 300px;
+  }
+
+  &__submit-btn {
+    display: block;
+    padding: 10px 75px;
+    font-size: 30px;
+    text-transform: uppercase;
+    border: 2px solid black;
+    background-color: black;
+    color: #fff;
+    font-weight: 700;
+    margin: 0 auto;
+    &:hover {
+      background-color: #fff;
+      color: black;
+      transition: 0.2s ease-in;
+    }
+  }
+}

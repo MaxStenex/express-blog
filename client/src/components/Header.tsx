@@ -46,7 +46,7 @@ const Header: React.FC = () => {
                       <button className="main-nav__logout-btn" onClick={onLogout}>
                         Logout
                       </button>
-                      <Link to="/home">New Article</Link>
+                      <Link to="/create_article">New Article</Link>
                     </div>
                   </div>
                 ) : (
