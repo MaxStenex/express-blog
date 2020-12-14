@@ -4,8 +4,6 @@ import { registerValidator } from "../../utils/validators/authValidation";
 
 const router = Router();
 
-const registerController = new RegisterController();
-
-router.post("/", registerValidator, registerController.index);
+router.post("/", registerValidator, RegisterController.index);
 
 export { router as registerRouter };

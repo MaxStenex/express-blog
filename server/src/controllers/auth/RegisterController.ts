@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import User from "../../models/User";
 
-export default class RegisterController {
+class RegisterController {
   index = async (req: Request, res: Response): Promise<unknown> => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -33,3 +33,5 @@ export default class RegisterController {
     res.status(200).json({ message: "Register succesfull" });
   };
 }
+
+export default new RegisterController();

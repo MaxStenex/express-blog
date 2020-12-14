@@ -4,7 +4,7 @@ import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
 import User from "../../models/User";
 
-export default class LoginController {
+class LoginController {
   index = async (req: Request, res: Response): Promise<unknown> => {
     const responseWithError = () =>
       res.status(400).json({ error: "Email or password incorrect" });
@@ -52,3 +52,5 @@ export default class LoginController {
     }
   };
 }
+
+export default new LoginController();
