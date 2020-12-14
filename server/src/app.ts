@@ -7,8 +7,6 @@ import mongoose from "mongoose";
 import { registerRouter, loginRouter } from "./routes/auth/";
 import { postsRouter } from "./routes/posts";
 
-import verifyUser from "./middleware/verifyUser";
-
 dotenv.config();
 
 const app = express();
@@ -30,9 +28,6 @@ app.use(cors(corsOptions));
 
 app.use("/auth/register", registerRouter);
 app.use("/auth/login", loginRouter);
-
-// Private routes
-app.use(verifyUser);
 app.use("/posts", postsRouter);
 
 app.listen(4000, () => console.log("Server running on port: 4000"));
