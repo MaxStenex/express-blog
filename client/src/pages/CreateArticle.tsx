@@ -1,8 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Footer, Header } from "../components";
+import { RootStateType } from "../redux/rootReducer";
 import "../styles/components/CreateArticle.scss";
+import api from "../utils/api";
 import { articleSchema } from "../utils/validation/newArticle";
+import classnames from "classnames";
 
 type NewArticleValuesType = {
   title: string;
@@ -10,6 +14,12 @@ type NewArticleValuesType = {
 };
 
 const CreateArticle: React.FC = () => {
+  const userId = useSelector((state: RootStateType) => state.user._id);
+  const [serverResponse, setServerResponse] = useState({
+    success: false,
+    message: "",
+  });
+
   return (
     <>
       <Header />
@@ -24,7 +34,20 @@ const CreateArticle: React.FC = () => {
             }}
             validationSchema={articleSchema}
             onSubmit={async (values: NewArticleValuesType, { resetForm }) => {
-              console.log(values);
+              try {
+                const response = await api.post("/posts/create", {
+                  authorId: userId,
+                  title: values.title,
+                  text: values.text,
+                });
+
+                setServerResponse({ message: response.data, success: true });
+              } catch (error) {
+                setServerResponse({
+                  message: "Error, post doesnt created",
+                  success: false,
+                });
+              }
               resetForm();
             }}
           >
@@ -53,6 +76,16 @@ const CreateArticle: React.FC = () => {
                   </span>
                 </div>
               </div>
+              {serverResponse.message && (
+                <span
+                  className={classnames(
+                    "create-article__response",
+                    serverResponse.success && "create-article__response--success"
+                  )}
+                >
+                  {serverResponse.message}
+                </span>
+              )}
               <button className="create-article__submit-btn" type="submit">
                 Submit
               </button>

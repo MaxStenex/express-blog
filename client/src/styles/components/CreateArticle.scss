@@ -106,4 +106,16 @@
       margin-top: 5px;
     }
   }
+
+  &__response {
+    font-weight: 700;
+    font-size: 18px;
+    color: red;
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+    &--success {
+      color: green;
+    }
+  }
 }
