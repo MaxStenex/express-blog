@@ -90,7 +90,7 @@
     color: #fff;
     font-weight: 700;
     margin: 0 auto;
-    &:hover {
+    &:hover:not([disabled]) {
       background-color: #fff;
       color: black;
       transition: 0.2s ease-in;
@@ -116,6 +116,16 @@
     margin-bottom: 15px;
     &--success {
       color: green;
+    }
+  }
+
+  &__file-section {
+    display: flex;
+    & label {
+      margin-top: 0;
+    }
+    & span {
+      margin-bottom: 13px;
     }
   }
 }

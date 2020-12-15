@@ -54,7 +54,6 @@ const LoginMain: React.FC = () => {
                     lastName: response.data.lastName,
                   })
                 );
-                console.log(response.headers.token);
 
                 localStorage.setItem("token", response.headers.token);
               } catch (error) {
