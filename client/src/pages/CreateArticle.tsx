@@ -11,7 +11,7 @@ import classnames from "classnames";
 type NewArticleValuesType = {
   title: string;
   text: string;
-  file: typeof File;
+  file: any;
 };
 
 const CreateArticle: React.FC = () => {
@@ -40,7 +40,8 @@ const CreateArticle: React.FC = () => {
             validationSchema={articleSchema}
             onSubmit={async (values: NewArticleValuesType, { resetForm }) => {
               try {
-                //Check image width and height before sending on server
+                if (!userId) return;
+
                 setLoading(true);
                 const img = new Image();
                 img.src = window.URL.createObjectURL(values.file);
@@ -51,13 +52,26 @@ const CreateArticle: React.FC = () => {
                   if (+img.height < 720) {
                     return setImageError("Image height should be > 720");
                   }
+
+                  const formData = new FormData();
+                  formData.append("postPhoto", values.file);
+                  formData.append("authorId", userId);
+                  formData.append("title", values.title);
+                  formData.append("text", values.text);
+
                   // const response = await api.post("/posts/create", {
                   //   authorId: userId,
                   //   title: values.title,
                   //   text: values.text,
                   // });
 
-                  // setServerResponse({ message: response.data, success: true });
+                  const response = await api.post("/posts/create", formData, {
+                    headers: {
+                      "Content-Type": `multipart/form-data`,
+                    },
+                  });
+
+                  setServerResponse({ message: response.data, success: true });
                   setImageError("");
                   resetForm();
                 };
@@ -69,7 +83,6 @@ const CreateArticle: React.FC = () => {
                 resetForm();
               }
               setLoading(false);
-              console.log(values);
             }}
           >
             {({ setFieldValue }) => (
