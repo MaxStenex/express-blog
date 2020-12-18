@@ -17,6 +17,7 @@ const initialState: UserStateType = {
   fetchStatus: {
     success: null,
     message: null,
+    loading: false,
   },
 };
 
@@ -30,9 +31,22 @@ const userReducer = (state = initialState, action: UserActions): UserStateType =
         fetchStatus: {
           success: true,
           message: null,
+          loading: false,
         },
       };
     }
+
+    case UserActionTypes.FETCH_USER_LOADING: {
+      return {
+        ...state,
+        fetchStatus: {
+          success: null,
+          message: null,
+          loading: true,
+        },
+      };
+    }
+
     case UserActionTypes.LOGOUT_USER: {
       return {
         userInfo: {
@@ -43,6 +57,7 @@ const userReducer = (state = initialState, action: UserActions): UserStateType =
         fetchStatus: {
           success: null,
           message: null,
+          loading: false,
         },
       };
     }
@@ -53,6 +68,7 @@ const userReducer = (state = initialState, action: UserActions): UserStateType =
         fetchStatus: {
           success: false,
           message: action.payload.message,
+          loading: false,
         },
       };
     }

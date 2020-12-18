@@ -11,11 +11,6 @@ import { loginSchema } from "../../utils/validation/login";
 import { LoadingStatus } from "../../types/";
 
 const LoginMain: React.FC = () => {
-  const [serverResponse, setServerResponse] = useState<LoadingStatus>({
-    message: null,
-    success: null,
-  });
-
   const dispatch = useDispatch();
   const userId = useSelector((state: RootStateType) => state.user.userInfo._id);
   const fetchUserStatusMessage = useSelector(
@@ -24,13 +19,9 @@ const LoginMain: React.FC = () => {
   const fetchUserStatusSuccess = useSelector(
     (state: RootStateType) => state.user.fetchStatus.success
   );
-
-  useEffect(() => {
-    setServerResponse({
-      message: fetchUserStatusMessage,
-      success: fetchUserStatusSuccess,
-    });
-  }, [fetchUserStatusMessage, fetchUserStatusSuccess]);
+  const fetchUserStatusLoading = useSelector(
+    (state: RootStateType) => state.user.fetchStatus.loading
+  );
 
   if (userId) {
     return <Redirect to="/home" />;
@@ -71,16 +62,20 @@ const LoginMain: React.FC = () => {
                   <ErrorMessage name="password" />
                 </span>
               </div>
-              <button className="login__submit" type="submit">
-                Login
+              <button
+                className="login__submit"
+                type="submit"
+                disabled={fetchUserStatusLoading}
+              >
+                {fetchUserStatusLoading ? "Loading..." : "Login"}
               </button>
-              {serverResponse.message && (
+              {fetchUserStatusMessage && (
                 <span
                   className={classnames("login__message", {
-                    "login__message--success": serverResponse.success,
+                    "login__message--success": fetchUserStatusSuccess,
                   })}
                 >
-                  {serverResponse.message}
+                  {fetchUserStatusMessage}
                 </span>
               )}
             </Form>

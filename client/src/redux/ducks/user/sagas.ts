@@ -4,6 +4,7 @@ import {
   FetchUserType,
   UserActionTypes,
   fetchUserSuccess,
+  fetchUserLoading,
 } from "./actions";
 import api from "../../../api";
 
@@ -25,6 +26,7 @@ function* setUserWithTokenSaga() {
 
 function* setUserSaga(action: FetchUserType) {
   try {
+    yield put(fetchUserLoading());
     const response = yield api.post("auth/login", action.payload.loginValues);
     yield put(
       fetchUserSuccess({

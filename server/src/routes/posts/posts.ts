@@ -1,6 +1,5 @@
 import express from "express";
 import PostsController from "../../controllers/posts/PostsController";
-import { postValidator } from "../../utils/validators/postValidation";
 import verifyUser from "../../middleware/verifyUser";
 import multer from "multer";
 import path from "path";

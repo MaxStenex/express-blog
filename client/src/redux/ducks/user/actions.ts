@@ -5,11 +5,16 @@ export enum UserActionTypes {
   SET_USER = "SET_USER",
   LOGOUT_USER = "LOGOUT_USER",
   FETCH_USER = "FETCH_USER",
+  FETCH_USER_LOADING = "FETCH_USER_LOADING",
   FETCH_USER_WITH_TOKEN = "FETCH_USER_WITH_TOKEN",
   FETCH_USER_ERROR = "FETCH_USER_ERROR",
 }
 
-export type UserActions = FetchUserSuccessType | LogoutUserType | FetchUserErrorType;
+export type UserActions =
+  | FetchUserSuccessType
+  | LogoutUserType
+  | FetchUserErrorType
+  | FetchUserLoadingType;
 
 type LogoutUserType = {
   type: UserActionTypes.LOGOUT_USER;
@@ -71,4 +76,12 @@ export const fetchUserError = (message: string): FetchUserErrorType => ({
   payload: {
     message,
   },
+});
+
+type FetchUserLoadingType = {
+  type: UserActionTypes.FETCH_USER_LOADING;
+};
+
+export const fetchUserLoading = (): FetchUserLoadingType => ({
+  type: UserActionTypes.FETCH_USER_LOADING,
 });

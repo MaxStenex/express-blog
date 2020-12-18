@@ -64,6 +64,7 @@ const CreateArticle: React.FC = () => {
                   const response = await api.post("/posts/create", formData, {
                     headers: {
                       "Content-Type": "multipart/form-data",
+                      Token: localStorage.getItem("token"),
                     },
                   });
 

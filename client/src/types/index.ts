@@ -5,4 +5,5 @@ export type LoginValuesType = {
 export type LoadingStatus = {
   success: boolean | null;
   message: string | null;
+  loading: boolean;
 };
