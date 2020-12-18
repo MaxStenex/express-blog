@@ -1,27 +1,35 @@
 import classnames from "classnames";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { setUser } from "../../redux/ducks/user/actions";
+import { fetchUser } from "../../redux/ducks/user/actions";
 import { RootStateType } from "../../redux/rootReducer";
 import "../../styles/components/Login/LoginMain.scss";
-import api from "../../utils/api";
+import { LoginValuesType } from "../../types";
 import { loginSchema } from "../../utils/validation/login";
-
-type LoginValuesType = {
-  email: string;
-  password: string;
-};
+import { LoadingStatus } from "../../types/";
 
 const LoginMain: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [serverResponse, setServerResponse] = useState({
-    message: "",
-    success: true,
+  const [serverResponse, setServerResponse] = useState<LoadingStatus>({
+    message: null,
+    success: null,
   });
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootStateType) => state.user._id);
+  const userId = useSelector((state: RootStateType) => state.user.userInfo._id);
+  const fetchUserStatusMessage = useSelector(
+    (state: RootStateType) => state.user.fetchStatus.message
+  );
+  const fetchUserStatusSuccess = useSelector(
+    (state: RootStateType) => state.user.fetchStatus.success
+  );
+
+  useEffect(() => {
+    setServerResponse({
+      message: fetchUserStatusMessage,
+      success: fetchUserStatusSuccess,
+    });
+  }, [fetchUserStatusMessage, fetchUserStatusSuccess]);
 
   if (userId) {
     return <Redirect to="/home" />;
@@ -45,25 +53,8 @@ const LoginMain: React.FC = () => {
             }}
             validationSchema={loginSchema}
             onSubmit={async (values: LoginValuesType, { resetForm }) => {
-              try {
-                const response = await api.post("auth/login", values);
-                dispatch(
-                  setUser({
-                    _id: response.data._id,
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
-                  })
-                );
-
-                localStorage.setItem("token", response.headers.token);
-              } catch (error) {
-                setServerResponse({
-                  message: error.response.data.error,
-                  success: false,
-                });
-                resetForm();
-                setLoading(false);
-              }
+              dispatch(fetchUser(values));
+              resetForm();
             }}
           >
             <Form className="login__form">
@@ -79,8 +70,8 @@ const LoginMain: React.FC = () => {
                   <ErrorMessage name="password" />
                 </span>
               </div>
-              <button className="login__submit" type="submit" disabled={loading}>
-                {loading ? "Logining in..." : "Login"}
+              <button className="login__submit" type="submit">
+                "Login"
               </button>
               {serverResponse.message && (
                 <span

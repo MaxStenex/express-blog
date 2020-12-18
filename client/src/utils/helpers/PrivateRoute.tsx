@@ -8,7 +8,7 @@ type PrivateRouteProps = {
 } & RouteProps;
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
-  const userId = useSelector((state: RootStateType) => state.user._id);
+  const userId = useSelector((state: RootStateType) => state.user.userInfo._id);
 
   return (
     <Route {...rest} render={() => (userId ? <Component /> : <Redirect to="/login" />)} />

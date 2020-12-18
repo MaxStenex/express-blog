@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
+import api from "./api";
 import { Article, CreateArticle, Home, Login, Register } from "./pages";
-import { setUser } from "./redux/ducks/user/actions";
+import { fetchUserSuccess } from "./redux/ducks/user/actions";
 import "./styles/components/App.scss";
 import "./styles/normalize.scss";
-import api from "./utils/api";
 import PrivateRoute from "./utils/helpers/PrivateRoute";
 
 const App: React.FC = () => {
@@ -18,7 +18,11 @@ const App: React.FC = () => {
       .then((response) => {
         const data = response.data;
         dispatch(
-          setUser({ _id: data._id, firstName: data.firstName, lastName: data.lastName })
+          fetchUserSuccess({
+            _id: data._id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+          })
         );
       })
       .catch((error) => {

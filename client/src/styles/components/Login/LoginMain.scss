@@ -96,7 +96,7 @@
     background-color: black;
     font-weight: 700;
 
-    &:hover {
+    &:hover:not([disabled]) {
       color: black;
       background-color: #f3f3f3;
     }

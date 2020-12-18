@@ -8,7 +8,7 @@ import { logoutUser } from "../redux/ducks/user/actions";
 import classnames from "classnames";
 
 const Header: React.FC = () => {
-  const user = useSelector((state: RootStateType) => state.user);
+  const user = useSelector((state: RootStateType) => state.user.userInfo);
   const dispatch = useDispatch();
   const [togglePopup, setTogglePopup] = useState(false);
 

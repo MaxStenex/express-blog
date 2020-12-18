@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/components/Register/RegisterMain.scss";
-import api from "../../utils/api";
+import api from "../../api";
 import { registerSchema } from "../../utils/validation/register";
 
 type RegisterValuesType = {

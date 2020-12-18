@@ -6,31 +6,38 @@ import User from "../../models/User";
 
 class LoginController {
   index = async (req: Request, res: Response): Promise<unknown> => {
-    const responseWithError = () =>
-      res.status(400).json({ error: "Email or password incorrect" });
+    try {
+      const responseWithError = () =>
+        res.status(400).json({ error: "Email or password incorrect" });
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return responseWithError();
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return responseWithError();
+      }
+
+      const registeredUser = await User.findOne({ email: req.body.email });
+      if (!registeredUser) {
+        return responseWithError();
+      }
+
+      const passIsValid = await bcrypt.compare(
+        req.body.password,
+        registeredUser.password
+      );
+      if (!passIsValid) {
+        return responseWithError();
+      }
+
+      const token = jwt.sign({ _id: registeredUser._id }, `${process.env.TOKEN_SECRET}`, {
+        expiresIn: "1h",
+      });
+
+      const { firstName, lastName, _id } = registeredUser;
+
+      res.status(200).header("Token", token).send({ firstName, lastName, _id });
+    } catch (error) {
+      res.status(500).send("Server error");
     }
-
-    const registeredUser = await User.findOne({ email: req.body.email });
-    if (!registeredUser) {
-      return responseWithError();
-    }
-
-    const passIsValid = await bcrypt.compare(req.body.password, registeredUser.password);
-    if (!passIsValid) {
-      return responseWithError();
-    }
-
-    const token = jwt.sign({ _id: registeredUser._id }, `${process.env.TOKEN_SECRET}`, {
-      expiresIn: "1h",
-    });
-
-    const { firstName, lastName, _id } = registeredUser;
-
-    res.status(200).header("Token", token).send({ firstName, lastName, _id });
   };
 
   withToken = async (req: Request, res: Response): Promise<unknown> => {

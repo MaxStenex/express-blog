@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Footer, Header } from "../components";
 import { RootStateType } from "../redux/rootReducer";
 import "../styles/components/CreateArticle.scss";
-import api from "../utils/api";
+import api from "../api";
 import { articleSchema } from "../utils/validation/newArticle";
 import classnames from "classnames";
 
@@ -15,7 +15,7 @@ type NewArticleValuesType = {
 };
 
 const CreateArticle: React.FC = () => {
-  const userId = useSelector((state: RootStateType) => state.user._id);
+  const userId = useSelector((state: RootStateType) => state.user.userInfo._id);
   const [loading, setLoading] = useState(false);
   const [serverResponse, setServerResponse] = useState({
     success: false,
