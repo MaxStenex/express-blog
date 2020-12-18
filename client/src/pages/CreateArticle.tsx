@@ -11,7 +11,7 @@ import classnames from "classnames";
 type NewArticleValuesType = {
   title: string;
   text: string;
-  file: any;
+  file: File | null;
 };
 
 const CreateArticle: React.FC = () => {
@@ -35,7 +35,7 @@ const CreateArticle: React.FC = () => {
             initialValues={{
               title: "",
               text: "",
-              file: File,
+              file: null,
             }}
             validationSchema={articleSchema}
             onSubmit={async (values: NewArticleValuesType, { resetForm }) => {
@@ -54,20 +54,16 @@ const CreateArticle: React.FC = () => {
                   }
 
                   const formData = new FormData();
-                  formData.append("postPhoto", values.file);
+                  if (values.file) {
+                    formData.append("postPhoto", values.file);
+                  }
                   formData.append("authorId", userId);
                   formData.append("title", values.title);
                   formData.append("text", values.text);
 
-                  // const response = await api.post("/posts/create", {
-                  //   authorId: userId,
-                  //   title: values.title,
-                  //   text: values.text,
-                  // });
-
                   const response = await api.post("/posts/create", formData, {
                     headers: {
-                      "Content-Type": `multipart/form-data`,
+                      "Content-Type": "multipart/form-data",
                     },
                   });
 

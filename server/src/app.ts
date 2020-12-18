@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import formidableMiddleware from "express-formidable";
 
 import { registerRouter, loginRouter } from "./routes/auth/";
 import { postsRouter } from "./routes/posts";

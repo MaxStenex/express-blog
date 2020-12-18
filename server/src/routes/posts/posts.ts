@@ -23,6 +23,6 @@ router.get("/lastest", PostsController.lastest);
 
 // Private routes
 router.use(verifyUser);
-router.post("/create", upload.single("postPhoto"), postValidator, PostsController.create);
+router.post("/create", upload.single("postPhoto"), PostsController.create);
 
 export default router;

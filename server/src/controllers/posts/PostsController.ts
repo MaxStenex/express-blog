@@ -14,27 +14,23 @@ class PostsController {
   };
 
   create = async (req: Request, res: Response) => {
+    req.body = JSON.parse(JSON.stringify(req.body));
+    // console.log(req.body);
+    // const errors = validationResult(req);
+
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ error: "Incorrect data" });
+    // }
+
+    const post = new Post({
+      authorId: req.body.authorId,
+      text: req.body.text,
+      title: req.body.title,
+      postPhotoName: req.file.filename,
+    });
+
     try {
-      console.log(req.body);
-      console.log(req.file);
-
-      // const errors = validationResult(req);
-      // if (!errors.isEmpty()) {
-      //   return res.status(400).json({ error: "Incorrect data" });
-      // }
-
-      // const post = await Post.create({
-      //   authorId: req.body.authorId,
-      //   text: req.body.text,
-      //   title: req.body.title,
-      // });
-
-      // post.save((err) => {
-      //   if (err) {
-      //     throw new Error("Post doesnt created");
-      //   }
-      // });
-
+      await post.save();
       res.status(200).send("Post created");
     } catch (error) {
       res.status(500).json({ error: "Post doesnt created" });

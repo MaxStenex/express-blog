@@ -15,6 +15,7 @@ const LoginMain: React.FC = () => {
     message: null,
     success: null,
   });
+
   const dispatch = useDispatch();
   const userId = useSelector((state: RootStateType) => state.user.userInfo._id);
   const fetchUserStatusMessage = useSelector(
@@ -52,7 +53,7 @@ const LoginMain: React.FC = () => {
               password: "",
             }}
             validationSchema={loginSchema}
-            onSubmit={async (values: LoginValuesType, { resetForm }) => {
+            onSubmit={(values: LoginValuesType, { resetForm }) => {
               dispatch(fetchUser(values));
               resetForm();
             }}
@@ -71,7 +72,7 @@ const LoginMain: React.FC = () => {
                 </span>
               </div>
               <button className="login__submit" type="submit">
-                "Login"
+                Login
               </button>
               {serverResponse.message && (
                 <span

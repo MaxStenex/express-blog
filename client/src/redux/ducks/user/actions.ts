@@ -5,6 +5,7 @@ export enum UserActionTypes {
   SET_USER = "SET_USER",
   LOGOUT_USER = "LOGOUT_USER",
   FETCH_USER = "FETCH_USER",
+  FETCH_USER_WITH_TOKEN = "FETCH_USER_WITH_TOKEN",
   FETCH_USER_ERROR = "FETCH_USER_ERROR",
 }
 
@@ -21,7 +22,7 @@ export const logoutUser = (): LogoutUserType => {
 };
 
 export type FetchUserType = {
-  type: UserActionTypes;
+  type: UserActionTypes.FETCH_USER;
   payload: {
     loginValues: LoginValuesType;
   };
@@ -32,6 +33,14 @@ export const fetchUser = (loginValues: LoginValuesType): FetchUserType => ({
   payload: {
     loginValues,
   },
+});
+
+export type FetchUserWithTokenType = {
+  type: UserActionTypes.FETCH_USER_WITH_TOKEN;
+};
+
+export const fetchUserWithToken = (): FetchUserWithTokenType => ({
+  type: UserActionTypes.FETCH_USER_WITH_TOKEN,
 });
 
 type FetchUserSuccessType = {
