@@ -19,6 +19,7 @@ const router = express.Router();
 
 router.get("/", PostsController.index);
 router.get("/lastest", PostsController.lastest);
+router.get("/postPreviewImage", PostsController.postPreviewImage);
 
 // Private routes
 router.use(verifyUser);

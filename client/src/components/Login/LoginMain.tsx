@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { fetchUser } from "../../redux/ducks/user/actions";
@@ -8,7 +8,6 @@ import { RootStateType } from "../../redux/rootReducer";
 import "../../styles/components/Login/LoginMain.scss";
 import { LoginValuesType } from "../../types";
 import { loginSchema } from "../../utils/validation/login";
-import { LoadingStatus } from "../../types/";
 
 const LoginMain: React.FC = () => {
   const dispatch = useDispatch();
