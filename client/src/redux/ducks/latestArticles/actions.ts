@@ -10,7 +10,7 @@ export enum LatestArticlesActionTypes {
 export type LatestArticlesActions =
   | FetchLatestArticlesType
   | SetLatestArticlesErrorType
-  | SetLatestArticlesLoadingType
+  | SetLatestArticlesSuccessType
   | SetLatestArticlesLoadingType;
 
 type FetchLatestArticlesType = {
@@ -32,12 +32,12 @@ export const setLatestArticlesLoading = (): SetLatestArticlesLoadingType => ({
 type SetLatestArticlesSuccessType = {
   type: LatestArticlesActionTypes.SET_LATEST_ARTICLES_SUCCESS;
   payload: {
-    latestArticles: LatestArticleType;
+    latestArticles: Array<LatestArticleType>;
   };
 };
 
 export const setLatestArticlesSuccess = (
-  latestArticles: LatestArticleType
+  latestArticles: Array<LatestArticleType>
 ): SetLatestArticlesSuccessType => ({
   type: LatestArticlesActionTypes.SET_LATEST_ARTICLES_SUCCESS,
   payload: { latestArticles },

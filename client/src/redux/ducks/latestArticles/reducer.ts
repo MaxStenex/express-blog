@@ -3,11 +3,11 @@ import { LatestArticlesActions, LatestArticlesActionTypes } from "./actions";
 
 export type LatestArticleType = {
   title: string;
-  image: File;
+  imagePath: string;
 };
 
 export type LatestArticlesStateType = {
-  latestArticles: LatestArticleType | Array<never>;
+  latestArticles: Array<LatestArticleType>;
   loadingStatus: LoadingStatus;
 };
 
@@ -43,6 +43,17 @@ const latestArticlesReducer = (
           message: null,
           success: null,
           loading: true,
+        },
+      };
+    }
+
+    case LatestArticlesActionTypes.SET_LATEST_ARTICLES_SUCCESS: {
+      return {
+        latestArticles: action.payload.latestArticles,
+        loadingStatus: {
+          message: null,
+          success: true,
+          loading: false,
         },
       };
     }

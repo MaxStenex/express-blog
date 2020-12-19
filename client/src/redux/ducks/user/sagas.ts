@@ -8,7 +8,7 @@ import {
 } from "./actions";
 import api from "../../../api";
 
-function* setUserWithTokenSaga() {
+function* fetchUserWithTokenSaga() {
   try {
     const token = localStorage.getItem("token");
     const { data } = yield api.get("auth/login/withToken", { headers: { Token: token } });
@@ -24,7 +24,7 @@ function* setUserWithTokenSaga() {
   }
 }
 
-function* setUserSaga(action: FetchUserType) {
+function* fetchUserSaga(action: FetchUserType) {
   try {
     yield put(fetchUserLoading());
     const response = yield api.post("auth/login", action.payload.loginValues);
@@ -43,6 +43,6 @@ function* setUserSaga(action: FetchUserType) {
 }
 
 export function* userSaga() {
-  yield takeLatest(UserActionTypes.FETCH_USER, setUserSaga);
-  yield takeLatest(UserActionTypes.FETCH_USER_WITH_TOKEN, setUserWithTokenSaga);
+  yield takeLatest(UserActionTypes.FETCH_USER, fetchUserSaga);
+  yield takeLatest(UserActionTypes.FETCH_USER_WITH_TOKEN, fetchUserWithTokenSaga);
 }
