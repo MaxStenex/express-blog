@@ -1,11 +1,14 @@
 .about {
   &__wrapper {
     display: flex;
+    padding: 50px 0px;
+    align-items: center;
   }
 
   &__image {
     flex: 50%;
     margin-right: 50px;
+    min-height: 400px;
   }
 
   &__main {
@@ -16,7 +19,6 @@
     font-weight: 700;
     font-size: 55px;
     text-align: center;
-    margin-top: 100px;
     position: relative;
     text-transform: uppercase;
     &::after {
@@ -35,8 +37,12 @@
     margin: 100px auto;
     margin-bottom: 0;
     font-size: 20px;
-    font-style: italic;
     max-width: 700px;
     line-height: 1.25;
+    letter-spacing: 0.3px;
+  }
+
+  &__paragraph {
+    margin-bottom: 4px;
   }
 }

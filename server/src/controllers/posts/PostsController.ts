@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Post from "../../models/Post";
 import path from "path";
+import sharp from "sharp";
 
 class PostsController {
   index = async (req: Request, res: Response) => {
@@ -40,14 +41,16 @@ class PostsController {
     }
   };
 
-  postPreviewImage = async (req: Request, res: Response) => {
-    try {
-      res
-        .status(200)
-        .sendFile(path.join(__dirname, `../../db/assets/posts/${req.query.imagePath}`));
-    } catch (error) {
-      res.status(404).json({ error: "Image not found" });
-    }
+  postPreviewImage = (req: Request, res: Response) => {
+    const imageFilePath = path.join(
+      __dirname,
+      `../../db/assets/posts/${req.query.imagePath}`
+    );
+    sharp(imageFilePath)
+      .resize(300, 300)
+      .toBuffer()
+      .then((data) => res.status(200).send(data))
+      .catch(() => res.status(404).json({ error: "Image not found" }));
   };
 }
 

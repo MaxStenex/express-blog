@@ -21,6 +21,10 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({ title, imagePath }) => 
         `data:${response.headers["content-type"].toLowerCase()};base64,${imgBuffer}`
       );
     })();
+    //Fixed unmount error
+    return () => {
+      setImage("");
+    };
   }, [imagePath]);
 
   return (
