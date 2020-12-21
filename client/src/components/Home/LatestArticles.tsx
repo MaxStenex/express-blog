@@ -25,6 +25,7 @@ const LatestArticles: React.FC = () => {
               key={article.imagePath}
               title={article.title}
               imagePath={article.imagePath}
+              _id={article._id}
             />
           ))}
         </ul>

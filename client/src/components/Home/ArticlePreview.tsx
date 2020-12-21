@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api";
 import "../../styles/components/Home/ArticlePreview.scss";
+import getArticleImage from "../../utils/functions/getArticleImage";
 
 type ArticlePreviewProps = {
+  _id: string;
   title: string;
   imagePath: string;
 };
 
-const ArticlePreview: React.FC<ArticlePreviewProps> = ({ title, imagePath }) => {
+const ArticlePreview: React.FC<ArticlePreviewProps> = ({ _id, title, imagePath }) => {
   const [image, setImage] = useState<string>("");
 
   useEffect(() => {
     (async () => {
-      const response = await api.get(`posts/postPreviewImage?imagePath=${imagePath}`, {
-        responseType: "arraybuffer",
-      });
-      const imgBuffer = Buffer.from(response.data, "binary").toString("base64");
+      const imageInfo = await getArticleImage(
+        `posts/postPreviewImage?imagePath=${imagePath}`
+      );
       setImage(
-        `data:${response.headers["content-type"].toLowerCase()};base64,${imgBuffer}`
+        `data:${imageInfo.contentType.toLowerCase()};base64,${imageInfo.imageBuffer}`
       );
     })();
     //Fixed unmount error
@@ -29,7 +29,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({ title, imagePath }) => 
 
   return (
     <li className="latest__article article-preview">
-      <Link to="/articles/1234">
+      <Link to={`/articles/${_id}`}>
         <img src={image} alt="article" className="article-preview__image" />
         <h3 className="article-preview__title">{title}</h3>
       </Link>

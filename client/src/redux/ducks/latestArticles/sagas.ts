@@ -13,6 +13,7 @@ function* fetchLatestAtcilesSaga() {
     yield put(setLatestArticlesLoading());
     const response = yield api.get("posts/lastest");
     const latestArticles: Array<LatestArticleType> = response.data.map((a: any) => ({
+      _id: a._id,
       title: a.title,
       imagePath: a.postPhotoName,
     }));

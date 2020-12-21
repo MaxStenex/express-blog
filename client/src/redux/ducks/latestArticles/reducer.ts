@@ -2,6 +2,7 @@ import { LoadingStatus } from "../../../types";
 import { LatestArticlesActions, LatestArticlesActionTypes } from "./actions";
 
 export type LatestArticleType = {
+  _id: string;
   title: string;
   imagePath: string;
 };

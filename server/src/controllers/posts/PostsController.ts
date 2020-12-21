@@ -9,7 +9,18 @@ class PostsController {
       const posts = await Post.find({});
       res.status(200).json(posts);
     } catch (error) {
-      res.status(500).send("Nothing found");
+      res.status(404).send("Nothing found");
+    }
+  };
+
+  getOne = async (req: Request, res: Response) => {
+    try {
+      const postId = req.query.id;
+      const post = await Post.findById(postId);
+
+      res.status(200).json(post);
+    } catch (error) {
+      res.status(404).send("Nothing found");
     }
   };
 
@@ -51,6 +62,18 @@ class PostsController {
       .toBuffer()
       .then((data) => res.status(200).send(data))
       .catch(() => res.status(404).json({ error: "Image not found" }));
+  };
+
+  articleImage = (req: Request, res: Response) => {
+    try {
+      const imageFilePath = path.join(
+        __dirname,
+        `../../db/assets/posts/${req.query.imagePath}`
+      );
+      res.status(200).sendFile(imageFilePath);
+    } catch (error) {
+      res.status(404).send("Image not found");
+    }
   };
 }
 

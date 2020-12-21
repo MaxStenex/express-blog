@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../api";
 import { Footer, Header, PageTop } from "../components";
 import { ArticleMain } from "../components/Article";
+import getArticleImage from "../utils/functions/getArticleImage";
+
+type ArticlePageInfoType = {
+  title: string;
+  text: string;
+  image: string;
+};
 
 const Article: React.FC = () => {
+  const params: { articleId: string } = useParams();
+  const [articleInfo, setArticleInfo] = useState<ArticlePageInfoType>({
+    title: "",
+    text: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    const getArticleInfo = async () => {
+      const { data } = await api.get(`/posts/article?id=${params.articleId}`);
+      const imageInfo = await getArticleImage(
+        `posts/articleImage?imagePath=${data.postPhotoName}`
+      );
+
+      setArticleInfo({
+        title: data.title,
+        text: data.text,
+        image: `data:${imageInfo.contentType.toLowerCase()};base64,${
+          imageInfo.imageBuffer
+        }`,
+      });
+    };
+    getArticleInfo();
+  }, [params.articleId]);
+
   return (
     <>
       <Header />
-      <PageTop
-        imageSrc="https://kipmu.ru/wp-content/uploads/prrda2-scaled.jpg"
-        title="dsadsaasdnasKdAJKLSjkasdajshjkbdassdsadkhasdhas"
-      />
-      <ArticleMain
-        text=" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia maxime adipisci
-          dignissimos necessitatibus perferendis dolores voluptatibus non. Obcaecati ipsam
-          nostrum totam sint corporis similique magni consequatur. Hic iste odit delectus
-          placeat laboriosam sapiente id aliquam, tenetur debitis amet dolor et? Ipsa non
-          tenetur, blanditiis sit veritatis, illum necessitatibus ad veniam amet nihil
-          magni explicabo velit laborum! Eaque vitae nihil magni laboriosam fugiat beatae
-          vel nemo harum accusamus dolores exercitationem omnis rem corrupti eos quibusdam
-          non, officiis incidunt quae quaerat! Quibusdam et nobis illum debitis ratione
-          provident quos repudiandae, reprehenderit doloribus? "
-      />
+      <PageTop imageSrc={articleInfo.image} title={articleInfo.title} />
+      <ArticleMain text={articleInfo.text} />
       <Footer />
     </>
   );

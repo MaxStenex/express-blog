@@ -14,7 +14,7 @@ const PageTop: React.FC<PageTopProps> = ({ title, imageSrc }) => {
       <section
         className="page-top"
         style={{
-          background: `url(${imageSrc}) no-repeat center center/cover`,
+          background: imageSrc && `url(${imageSrc}) no-repeat center center/cover`,
         }}
       >
         <div className="page-top__shadow"></div>

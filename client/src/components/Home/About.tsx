@@ -9,7 +9,7 @@ const About: React.FC = () => {
         <img src={MernImg} alt="" className="about__image" />
         <div className="about__main">
           <h2 className="about__title">About</h2>
-          <p className="about__text">
+          <div className="about__text">
             <p className="about__paragraph">
               Hello! My name is Maxim and i`m a frontend developer.
             </p>
@@ -23,7 +23,7 @@ const About: React.FC = () => {
             <p className="about__paragraph">
               ...and ofcourse TypeScript. TypeScript everywhere :D
             </p>
-          </p>
+          </div>
         </div>
       </div>
     </section>
