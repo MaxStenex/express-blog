@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Post from "../../models/Post";
 import path from "path";
 import sharp from "sharp";
+import User from "../../models/User";
 
 class PostsController {
   index = async (req: Request, res: Response) => {
@@ -13,12 +14,21 @@ class PostsController {
     }
   };
 
-  getOne = async (req: Request, res: Response) => {
+  article = async (req: Request, res: Response) => {
     try {
       const postId = req.query.id;
       const post = await Post.findById(postId);
+      const user = await User.findById(post?.authorId);
 
-      res.status(200).json(post);
+      const postInfo = {
+        title: post?.title,
+        text: post?.text,
+        authorFirstName: user?.firstName,
+        authorLastName: user?.lastName,
+        imagePath: post?.photoName,
+      };
+
+      res.status(200).json(postInfo);
     } catch (error) {
       res.status(404).send("Nothing found");
     }
@@ -31,7 +41,7 @@ class PostsController {
       authorId: req.body.authorId,
       text: req.body.text,
       title: req.body.title,
-      postPhotoName: req.file.filename,
+      photoName: req.file.filename,
     });
 
     try {

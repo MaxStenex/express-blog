@@ -8,6 +8,7 @@
     font-size: 45px;
     text-transform: uppercase;
     position: relative;
+    margin-bottom: 70px;
     &::after {
       position: absolute;
       left: 50%;
@@ -21,11 +22,16 @@
   }
 
   &__articles {
-    margin-top: 70px;
     display: flex;
     justify-content: space-between;
   }
 
   &__article {
+  }
+
+  &__nothing-found {
+    font-size: 70px;
+    font-weight: 700;
+    text-align: center;
   }
 }

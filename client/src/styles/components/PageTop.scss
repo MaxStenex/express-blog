@@ -39,4 +39,21 @@
     z-index: 15;
     opacity: 0.5;
   }
+
+  &__author {
+    text-align: center;
+    z-index: 30;
+    position: relative;
+    font-size: 22px;
+    margin-bottom: 40px;
+    &-wrapper {
+      background-color: #fff;
+      border-radius: 5px;
+      display: inline;
+      padding: 10px;
+    }
+    & span {
+      margin-right: 3px;
+    }
+  }
 }

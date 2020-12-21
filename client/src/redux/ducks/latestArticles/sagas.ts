@@ -15,7 +15,7 @@ function* fetchLatestAtcilesSaga() {
     const latestArticles: Array<LatestArticleType> = response.data.map((a: any) => ({
       _id: a._id,
       title: a.title,
-      imagePath: a.postPhotoName,
+      imagePath: a.photoName,
     }));
     yield put(setLatestArticlesSuccess(latestArticles));
   } catch (error) {

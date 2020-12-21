@@ -9,6 +9,8 @@ type ArticlePageInfoType = {
   title: string;
   text: string;
   image: string;
+  authorFirstName: string;
+  authorLastName: string;
 };
 
 const Article: React.FC = () => {
@@ -17,13 +19,15 @@ const Article: React.FC = () => {
     title: "",
     text: "",
     image: "",
+    authorFirstName: "",
+    authorLastName: "",
   });
 
   useEffect(() => {
     const getArticleInfo = async () => {
       const { data } = await api.get(`/posts/article?id=${params.articleId}`);
       const imageInfo = await getArticleImage(
-        `posts/articleImage?imagePath=${data.postPhotoName}`
+        `posts/articleImage?imagePath=${data.imagePath}`
       );
 
       setArticleInfo({
@@ -32,6 +36,8 @@ const Article: React.FC = () => {
         image: `data:${imageInfo.contentType.toLowerCase()};base64,${
           imageInfo.imageBuffer
         }`,
+        authorFirstName: data.authorFirstName,
+        authorLastName: data.authorLastName,
       });
     };
     getArticleInfo();
@@ -40,7 +46,12 @@ const Article: React.FC = () => {
   return (
     <>
       <Header />
-      <PageTop imageSrc={articleInfo.image} title={articleInfo.title} />
+      <PageTop
+        imageSrc={articleInfo.image}
+        title={articleInfo.title}
+        authorFirstName={articleInfo.authorFirstName}
+        authorLastName={articleInfo.authorLastName}
+      />
       <ArticleMain text={articleInfo.text} />
       <Footer />
     </>

@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 const router = express.Router();
 
 router.get("/", PostsController.index);
-router.get("/article", PostsController.getOne);
+router.get("/article", PostsController.article);
 router.get("/lastest", PostsController.lastest);
 router.get("/postPreviewImage", PostsController.postPreviewImage);
 router.get("/articleImage", PostsController.articleImage);

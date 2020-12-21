@@ -19,16 +19,25 @@ const LatestArticles: React.FC = () => {
     <section className="latest">
       <div className="container">
         <h2 className="latest__title">latest articles</h2>
-        <ul className="latest__articles">
-          {latestArticles.map((article) => (
-            <ArticlePreview
-              key={article.imagePath}
-              title={article.title}
-              imagePath={article.imagePath}
-              _id={article._id}
-            />
-          ))}
-        </ul>
+        {latestArticles.length > 0 ? (
+          <ul className="latest__articles">
+            {latestArticles.map((article) => (
+              <ArticlePreview
+                key={article.imagePath}
+                title={article.title}
+                imagePath={article.imagePath}
+                _id={article._id}
+              />
+            ))}
+          </ul>
+        ) : (
+          <>
+            <div className="latest__nothing-found">
+              Nothing found <br />
+              :(
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
