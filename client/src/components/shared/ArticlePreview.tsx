@@ -29,7 +29,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({ _id, title, imagePath }
 
   return (
     <li className="latest__article article-preview">
-      <Link to={`/articles/${_id}`}>
+      <Link to={`/article/${_id}`}>
         <img src={image} alt="article" className="article-preview__image" />
         <h3 className="article-preview__title">{title}</h3>
       </Link>

@@ -1,11 +1,11 @@
-import Logo from "../assets/logo.png";
-import React, { useState } from "react";
-import "../styles/components/Header.scss";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootStateType } from "../redux/rootReducer";
-import { logoutUser } from "../redux/ducks/user/actions";
 import classnames from "classnames";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.png";
+import { logoutUser } from "../../redux/ducks/user/actions";
+import { RootStateType } from "../../redux/rootReducer";
+import "../../styles/components/Header.scss";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootStateType) => state.user.userInfo);
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
                 <Link to="/home">home</Link>
               </li>
               <li className="main-nav__item">
-                <Link to="/home">articles</Link>
+                <Link to="/articles/1">articles</Link>
               </li>
               <li className="main-nav__item">
                 {user._id ? (

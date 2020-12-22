@@ -1,6 +1,5 @@
 import React from "react";
-import "../styles/components/PageTop.scss";
-import { Header } from "./";
+import "../../styles/components/PageTop.scss";
 
 type PageTopProps = {
   imageSrc: string;
@@ -17,7 +16,6 @@ const PageTop: React.FC<PageTopProps> = ({
 }) => {
   return (
     <>
-      <Header />
       <section
         className="page-top"
         style={{

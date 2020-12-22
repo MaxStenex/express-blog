@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/components/Footer.scss";
-import GitHub from "../assets/githublink.png";
+import GitHub from "../../assets/githublink.png";
+import "../../styles/components/Footer.scss";
 
 const Footer: React.FC = () => {
   return (

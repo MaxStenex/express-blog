@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../components";
+import { Header } from "../components/shared";
 import { RegisterMain } from "../components/Register";
 
 const Register: React.FC = () => {

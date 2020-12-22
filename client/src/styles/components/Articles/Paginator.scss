@@ -1,0 +1,32 @@
+.paginator {
+  &__main {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    font-size: 25px;
+    padding: 10px;
+    border: 2px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    &:hover {
+      background-color: #ccc;
+      transition: 0.2s;
+    }
+    &:first-child {
+      border-left: 2px solid black;
+    }
+    &:last-child {
+      border-right: 2px solid black;
+    }
+    &.active {
+      color: white;
+      background-color: black;
+    }
+  }
+}

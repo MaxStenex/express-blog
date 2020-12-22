@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../components";
+import { Header } from "../components/shared";
 import { LoginMain } from "../components/Login";
 
 const Login: React.FC = () => {

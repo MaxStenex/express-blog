@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchLatestArticles } from "../../redux/ducks/latestArticles/actions";
 import { RootStateType } from "../../redux/rootReducer";
 import "../../styles/components/Home/LatestArticles.scss";
-import { ArticlePreview } from "./";
+import { ArticlePreview } from "../shared";
 
 const LatestArticles: React.FC = () => {
   const latestArticles = useSelector(

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api";
-import { Footer, Header, PageTop } from "../components";
+import { Footer, Header, PageTop } from "../components/shared";
 import { ArticleMain } from "../components/Article";
 import getArticleImage from "../utils/functions/getArticleImage";
 

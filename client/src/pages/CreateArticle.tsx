@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Footer, Header } from "../components";
+import { Footer, Header } from "../components/shared";
 import { RootStateType } from "../redux/rootReducer";
 import "../styles/components/CreateArticle.scss";
 import api from "../api";
