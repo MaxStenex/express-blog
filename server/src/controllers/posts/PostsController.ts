@@ -85,6 +85,23 @@ class PostsController {
       res.status(404).send("Image not found");
     }
   };
+
+  articles = async (req: Request, res: Response) => {
+    try {
+      const options = {
+        page: +req.params.pageNumber - 1,
+        limit: 6,
+      };
+      const posts = await Post.find()
+        .sort({ createdAt: -1 })
+        .skip(options.page * options.limit)
+        .limit(options.limit);
+
+      res.status(200).json(posts);
+    } catch (error) {
+      res.status(404).send("Not found");
+    }
+  };
 }
 
 export default new PostsController();

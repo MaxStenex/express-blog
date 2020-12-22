@@ -17,14 +17,14 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.get("/", PostsController.index);
 router.get("/article", PostsController.article);
 router.get("/lastest", PostsController.lastest);
 router.get("/postPreviewImage", PostsController.postPreviewImage);
 router.get("/articleImage", PostsController.articleImage);
+router.get("/:pageNumber", PostsController.articles);
+router.get("/", PostsController.index);
 
 // Private routes
-router.use(verifyUser);
-router.post("/create", upload.single("postPhoto"), PostsController.create);
+router.post("/create", verifyUser, upload.single("postPhoto"), PostsController.create);
 
 export default router;
