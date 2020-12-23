@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/components/Home/ArticlePreview.scss";
+import "../../styles/components/ArticlePreview.scss";
 import getArticleImage from "../../utils/functions/getArticleImage";
 
-type ArticlePreviewProps = {
+export type ArticlePreviewProps = {
   _id: string;
   title: string;
   imagePath: string;

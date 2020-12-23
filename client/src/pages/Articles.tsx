@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, PageTop } from "../components/shared";
-import ArticlesPagePhoto from "../assets/articles.jpg";
+import ArticlesPagePhoto from "../images/articles.jpg";
 import { ArticlesMain } from "../components/Articles";
 
 const Articles: React.FC = () => {

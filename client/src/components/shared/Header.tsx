@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.png";
+import Logo from "../../images/logo.png";
 import { logoutUser } from "../../redux/ducks/user/actions";
 import { RootStateType } from "../../redux/rootReducer";
 import "../../styles/components/Header.scss";

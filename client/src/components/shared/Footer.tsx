@@ -1,5 +1,5 @@
 import React from "react";
-import GitHub from "../../assets/githublink.png";
+import GitHub from "../../images/githublink.png";
 import "../../styles/components/Footer.scss";
 
 const Footer: React.FC = () => {

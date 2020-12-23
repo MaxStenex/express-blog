@@ -8,23 +8,27 @@
     font-size: 25px;
     padding: 10px;
     border: 2px solid black;
-    border-right: 1px solid black;
-    border-left: 1px solid black;
     text-decoration: none;
     background-color: white;
     color: black;
     font-weight: 700;
+    &:nth-child(3n) {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
     &:hover {
       background-color: #ccc;
       transition: 0.2s;
     }
     &:first-child {
-      border-left: 2px solid black;
+      border: 2px solid black;
+      margin-right: 10px;
     }
     &:last-child {
-      border-right: 2px solid black;
+      border: 2px solid black;
+      margin-left: 10px;
     }
-    &.active {
+    &.active:not(:first-child):not(:last-child) {
       color: white;
       background-color: black;
     }

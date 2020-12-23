@@ -10,5 +10,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
+    flex-wrap: wrap;
+    & .article-preview {
+      margin-bottom: 60px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
   }
 }

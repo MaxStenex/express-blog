@@ -96,8 +96,12 @@ class PostsController {
         .sort({ createdAt: -1 })
         .skip(options.page * options.limit)
         .limit(options.limit);
+      const pagesCount = Math.ceil((await Post.count()) / options.limit);
 
-      res.status(200).json(posts);
+      res.status(200).json({
+        pagesCount,
+        posts,
+      });
     } catch (error) {
       res.status(404).send("Not found");
     }

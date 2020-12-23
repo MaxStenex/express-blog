@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/components/Home/About.scss";
-import MernImg from "../../assets/mern.png";
+import MernImg from "../../images/mern.png";
 
 const About: React.FC = () => {
   return (
