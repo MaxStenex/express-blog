@@ -3,16 +3,31 @@
     display: flex;
     padding: 50px 0px;
     align-items: center;
+    @media (max-width: 650px) {
+      flex-direction: column;
+      padding: 30px;
+    }
   }
 
   &__image {
     flex: 50%;
     margin-right: 50px;
     min-height: 400px;
+    max-width: 50%;
+    @media (max-width: 650px) {
+      flex: 100%;
+      min-height: initial;
+      height: 200px;
+      margin-right: 0;
+      max-width: initial;
+    }
   }
 
   &__main {
     flex: 50%;
+    @media (max-width: 650px) {
+      flex: 100%;
+    }
   }
 
   &__title {
@@ -31,6 +46,9 @@
       background-color: black;
       bottom: -30px;
     }
+    @media (max-width: 650px) {
+      display: none;
+    }
   }
 
   &__text {
@@ -40,6 +58,9 @@
     max-width: 700px;
     line-height: 1.25;
     letter-spacing: 0.3px;
+    @media (max-width: 650px) {
+      margin-top: 20px;
+    }
   }
 
   &__paragraph {

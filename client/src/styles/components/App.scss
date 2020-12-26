@@ -6,4 +6,13 @@ body {
   max-width: 1170px;
   padding: 0px 10px;
   margin: 0 auto;
+  @media (max-width: 1200px) {
+    max-width: 900px;
+  }
+  @media (max-width: 930px) {
+    max-width: 620px;
+  }
+  @media (max-width: 650px) {
+    max-width: none;
+  }
 }
