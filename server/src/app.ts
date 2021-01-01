@@ -1,8 +1,9 @@
 import * as dotenv from "dotenv";
-import express, { response } from "express";
+import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import path from "path";
 
 import { registerRouter, loginRouter } from "./routes/auth/";
 import { postsRouter } from "./routes/posts";
@@ -29,12 +30,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
-app.get("/", (req, res) => {
-  res.send("Hello from Express!");
-});
-
 app.use("/auth/register", registerRouter);
 app.use("/auth/login", loginRouter);
 app.use("/posts", postsRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../../client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../../client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => console.log("Server running"));
