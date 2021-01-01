@@ -45,8 +45,7 @@ const Header: React.FC = () => {
                     className={classnames("main-nav__popup", {
                       "main-nav__popup--opened": togglePopup,
                     })}
-                    onMouseEnter={() => setTogglePopup(!togglePopup)}
-                    onMouseLeave={() => setTogglePopup(!togglePopup)}
+                    onClick={() => setTogglePopup(!togglePopup)}
                   >
                     <span className="main-nav__hello">Hello, {user.firstName}</span>
                     <div className="main-nav__popup-body">

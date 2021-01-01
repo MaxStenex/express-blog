@@ -7,10 +7,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Header />
-      <PageTop
-        imageSrc={HomeImage}
-        title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, perferendis."
-      />
+      <PageTop imageSrc={HomeImage} title="Blog about everything" />
       <LatestArticles />
       <About />
       <Footer />

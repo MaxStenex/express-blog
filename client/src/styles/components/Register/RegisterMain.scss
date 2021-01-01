@@ -92,6 +92,13 @@
     & .register__field-section:first-child {
       margin-right: 15px;
     }
+    @media (max-width: 650px) {
+      flex-direction: column;
+      & .register__field-section:first-child {
+        margin-right: 0;
+        flex: 1;
+      }
+    }
   }
 
   &__submit {
