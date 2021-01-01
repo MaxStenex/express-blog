@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import express from "express";
+import express, { response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -28,6 +28,10 @@ const corsOptions = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express!");
+});
 
 app.use("/auth/register", registerRouter);
 app.use("/auth/login", loginRouter);
