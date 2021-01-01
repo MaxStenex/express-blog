@@ -65,7 +65,7 @@ class PostsController {
   postPreviewImage = (req: Request, res: Response) => {
     const imageFilePath = path.join(
       __dirname,
-      `../../db/assets/posts/${req.query.imagePath}`
+      `../../../db/assets/posts/${req.query.imagePath}`
     );
     sharp(imageFilePath)
       .resize(300, 300)
@@ -78,7 +78,7 @@ class PostsController {
     try {
       const imageFilePath = path.join(
         __dirname,
-        `../../db/assets/posts/${req.query.imagePath}`
+        `../../../db/assets/posts/${req.query.imagePath}`
       );
       res.status(200).sendFile(imageFilePath);
     } catch (error) {
