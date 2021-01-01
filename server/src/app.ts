@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import formidableMiddleware from "express-formidable";
 
 import { registerRouter, loginRouter } from "./routes/auth/";
 import { postsRouter } from "./routes/posts";
@@ -11,6 +10,8 @@ import { postsRouter } from "./routes/posts";
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 4000;
+
 mongoose.connect(
   `${process.env.DB_CONNECT}`,
   {
@@ -32,4 +33,4 @@ app.use("/auth/register", registerRouter);
 app.use("/auth/login", loginRouter);
 app.use("/posts", postsRouter);
 
-app.listen(4000, () => console.log("Server running on port: 4000"));
+app.listen(PORT, () => console.log("Server running"));
